@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from "react"
 import { ReactReader } from "react-reader"
 import Head from 'next/head'
 
-import { Button } from "@mui/material"
+import { Button, TextField } from "@mui/material"
 
 const App = () => {
-  const [location, setLocation] = useState(null)
+  const [location, setLocation] = useState(5)
+  const [locationDefault, setLocationDefault] = useState(null)
   const [page, setPage] = useState('')
   const renditionRef = useRef(null)
   const locationChanged = (epubcify) => {
-    setLocation(108)
+    setLocation(epubcify)
     if (renditionRef.current) {
       const { displayed } = renditionRef.current.location.start
       setPage(`Page ${displayed.page} of ${displayed.total}`)
@@ -23,6 +24,7 @@ const App = () => {
   }
   
   useEffect(() => {
+    setLocationDefault(localStorage.getItem("location"))
     document.addEventListener('keydown', (event) => {
       if (event.key == 'h') {
           hidePage()
@@ -88,11 +90,19 @@ const App = () => {
                 renditionRef.current = rendition
             }}
           />
-          <div style={{width: "30px", position: 'absolute', bottom: '2.5rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1, backgroundColor: "transparent !important" }}>
+          <div style={{ position: 'absolute', whiteSpace: "nowrap", bottom: '0rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1, backgroundColor: "transparent !important" }}>
             {page}
           </div>
-          <div style={{ position: 'absolute', bottom: '0rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1, width: "30px" }}>
-            <Button onClick={hidePage}>HIDE</Button>
+          <div style={{ position: 'absolute', bottom: '-5rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1 }}>
+            <TextField inputProps={{
+              style: {
+                textAlign: "center"
+              }
+            }} defaultValue={locationDefault} sx={{ width: "80px", marginBottom: "35px"}} variant="standard" autoComplete="off" onBlur={({target}) => {
+                const val = target.value
+                localStorage.setItem('location', val)
+                setLocation(val)  
+            }}/>
           </div>
         </div>
       }
