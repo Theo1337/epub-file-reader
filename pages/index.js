@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from "react"
 import { ReactReader } from "react-reader"
 import Head from 'next/head'
 
-import { Button, TextField } from "@mui/material"
+import { TextField } from "@mui/material"
 
 const App = () => {
   const [location, setLocation] = useState(5)
+  const [lPage, setLPage] = useState("")
   const [locationDefault, setLocationDefault] = useState(null)
   const [page, setPage] = useState('')
   const renditionRef = useRef(null)
@@ -14,6 +15,8 @@ const App = () => {
     if (renditionRef.current) {
       const { displayed } = renditionRef.current.location.start
       setPage(`Page ${displayed.page} of ${displayed.total}`)
+      setLPage(`${displayed.page}`)
+      localStorage.setItem('lPage', displayed.page)
     }
   }
   
@@ -25,6 +28,7 @@ const App = () => {
   
   useEffect(() => {
     setLocationDefault(localStorage.getItem("location"))
+    setLPage(localStorage.getItem("lPage"))
     document.addEventListener('keydown', (event) => {
       if (event.key == 'h') {
           hidePage()
@@ -83,8 +87,6 @@ const App = () => {
           <ReactReader
             locationChanged={locationChanged}
             url="/assets/book.epub"
-            id="black"
-            class="black"
             location={location}
             getRendition={(rendition) => {
                 renditionRef.current = rendition
@@ -98,11 +100,14 @@ const App = () => {
               style: {
                 textAlign: "center"
               }
-            }} defaultValue={locationDefault} sx={{ width: "80px", marginBottom: "35px"}} variant="standard" autoComplete="off" onBlur={({target}) => {
+            }} defaultValue={locationDefault} sx={{ width: "80px", marginBottom: "35px"}} variant="standard" autoComplete="off" onKeyUp={({target}) => {
                 const val = target.value
                 localStorage.setItem('location', val)
                 setLocation(val)  
             }}/>
+          </div>
+          <div style={{ position: 'absolute', bottom: '-5rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1 }}>
+            <div>Last page: {lPage}</div>
           </div>
         </div>
       }
