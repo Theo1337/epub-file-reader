@@ -6,20 +6,12 @@ import theme from '../theme';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" style={{
-        backgroundColor: "black"
-      }}>
-        <Head style={{
-        backgroundColor: "black"
-      }}>
+      <Html lang="en">
+        <Head>
             <meta name="theme-color" content={theme.palette.primary.main} />
             <link rel="shortcut icon" href="/icon.png" type= "image/png" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-            <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossOrigin="anonymous"/>
         </Head>
-        <body style={{
-        backgroundColor: "black"
-      }}>
+        <body>
             <Main />
             <NextScript />
         </body>
