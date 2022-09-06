@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
             <meta name="theme-color" content={theme.palette.primary.main} />
-            <link rel="shortcut icon" href="/icon.png" type= "image/png" />
+            <link rel="shortcut icon" href="/assets/logo.ico" sizes="2048x2048" type= "image/png" />
         </Head>
         <body>
             <Main />
