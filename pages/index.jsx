@@ -115,7 +115,7 @@ const App = () => {
         <div style={{ height: "100vh", backgroundColor: "transparent"}}>
           <ReactReader
             locationChanged={locationChanged}
-            url="/assets/hg.epub"
+            url="/assets/hg-ss.epub"
             location={location}
             styles={styles}
             getRendition={(rendition) => {
