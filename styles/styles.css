@@ -1,6 +1,6 @@
 body{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 .box:hover {
     background-color:rgba(255, 255, 255, .1);
