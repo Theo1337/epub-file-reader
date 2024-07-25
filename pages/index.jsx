@@ -122,7 +122,7 @@ const App = () => {
                 renditionRef.current = rendition
             }}
           />
-          <div style={{ position: 'absolute', whiteSpace: "nowrap", bottom: '0rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1, backgroundColor: "transparent !important" }}>
+          <div style={{ position: 'absolute', color:"black", whiteSpace: "nowrap", bottom: '0rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1, backgroundColor: "transparent !important" }}>
             {page}
           </div>
           <div style={{ position: 'absolute', bottom: '-5rem', right: '1rem', left: '1rem', textAlign: 'center', zIndex: 1 }}>
